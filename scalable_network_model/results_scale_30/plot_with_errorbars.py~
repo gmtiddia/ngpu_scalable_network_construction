@@ -1,0 +1,288 @@
+import os
+import json
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+real_nodes = [32, 64, 96, 128, 192, 256]
+fake_nodes = [32, 64, 96, 128, 192, 256, 512, 1024, 2048 ]
+opt_levels_all = [0, 1, 2, 3]
+opt_levels_partial = [0, 1, 2]
+run_seeds = list(range(5))
+ranks_per_node = 4
+n_neurons_per_proc = 11250
+indegree = 11250
+scale = 20.0
+
+def safe_mean(arr):
+    return np.mean(arr) if arr else np.nan
+
+def load_and_aggregate_data():
+    data = {}
+    for o in opt_levels_all:
+        data[o] = {
+            "construct_avg": [],
+            "construct_max": [],
+            "construct_min": [],
+            "construct_std": [],
+            "calibrate_avg": [],
+            "calibrate_max": [],
+            "calibrate_min": [],
+            "calibrate_std": [],
+            "simulate_avg": [],
+            "simulate_max": [],
+            "simulate_min": [],
+            "simulate_std": [],
+            "gpu_mem_peak": [],
+            "gpu_mem_peak_std": [],
+            "gpu_mem_used": [],
+            "gpu_mem_used_std": [],
+            "fake_construct": [],
+            "fake_calibrate": [],
+            "fake_gpu_mem_peak": [],
+            "fake_gpu_mem_used": [],
+            "n_neurons": [],
+            "n_connections": []
+        }
+
+        for N in fake_nodes:
+            total_neurons = scale * ranks_per_node * N * n_neurons_per_proc
+            total_conns = total_neurons * indegree
+            if o == 0:
+                data[o]["n_neurons"].append(total_neurons)
+                data[o]["n_connections"].append(total_conns)
+
+        for N in real_nodes:
+            per_run_construct_avg, per_run_construct_max, per_run_construct_min, per_run_construct_std = [], [], [] , []
+            per_run_calibrate_avg, per_run_calibrate_max, per_run_calibrate_min, per_run_calibrate_std = [], [], [], []
+            per_run_simulate_avg, per_run_simulate_max, per_run_simulate_min, per_run_simulate_std  = [], [], [], []
+            per_run_gpu_peak, per_run_gpu_peak_std = [], []
+            per_run_gpu_used, per_run_gpu_used_std = [], []
+
+            for r in run_seeds:
+                construct_vals, calibrate_vals, simulate_vals = [], [], []
+                gpu_peak_vals, gpu_used_vals = [], []
+
+                folder = f"nodes_{N}/opt_{o}_run_{r}"
+                for rank in range(ranks_per_node * N):
+                    file = os.path.join(folder, f"log_{rank}.json")
+                    if os.path.exists(file):
+                        with open(file, "r") as f:
+                            log = json.load(f)
+                        t = log.get("timers", {})
+                        g = log.get("gpu_mem", {})
+
+                        construct_vals.append(t.get("time_construct", 0) / 1e9)
+                        calibrate_vals.append(t.get("time_calibrate", 0) / 1e9)
+                        simulate_vals.append(t.get("time_simulate", 0) / 1e9)
+                        gpu_peak_vals.append(g.get("gpu_mem_peak", 0) / (2**30))
+                        gpu_used_vals.append(g.get("gpu_mem_used", 0) / (2**30))
+
+                if construct_vals:
+                    per_run_construct_avg.append((np.mean(construct_vals)))
+                    per_run_construct_max.append((np.max(construct_vals)))
+                    per_run_construct_min.append((np.min(construct_vals)))
+                    per_run_construct_std.append((np.std(construct_vals)))
+                    per_run_calibrate_avg.append((np.mean(calibrate_vals)))
+                    per_run_calibrate_max.append((np.max(calibrate_vals)))
+                    per_run_calibrate_min.append((np.min(calibrate_vals)))
+                    per_run_calibrate_std.append((np.std(calibrate_vals)))
+                    per_run_simulate_avg.append((np.mean(simulate_vals)))
+                    per_run_simulate_max.append((np.max(simulate_vals)))
+                    per_run_simulate_min.append((np.min(simulate_vals)))
+                    per_run_simulate_std.append((np.std(simulate_vals)))
+ 
+                    per_run_gpu_peak.append(np.mean(gpu_peak_vals))
+                    per_run_gpu_peak_std.append(np.std(gpu_peak_vals))
+                    per_run_gpu_used.append(np.mean(gpu_used_vals))
+                    per_run_gpu_used_std.append(np.std(gpu_used_vals))
+
+            def aggregate(per_run):
+                if per_run:
+                    return (
+                        np.mean([p for p in per_run]),
+                    )
+                else:
+                    return np.nan
+
+            for k, runs in zip(["construct_avg", "construct_max", "construct_min", "construct_std", \
+                                "calibrate_avg", "calibrate_max", "calibrate_min", "calibrate_std", \
+                                "simulate_avg", "simulate_max", "simulate_min", "simulate_std", \
+                                "gpu_mem_peak", "gpu_mem_peak_std", "gpu_mem_used", "gpu_mem_used_std"], \
+                               [per_run_construct_avg, per_run_construct_max, per_run_construct_min, per_run_construct_std, \
+                                per_run_calibrate_avg, per_run_calibrate_max, per_run_calibrate_min, per_run_calibrate_std, \
+                                per_run_simulate_avg, per_run_simulate_max, per_run_simulate_min, per_run_simulate_std, \
+                                per_run_gpu_peak, per_run_gpu_peak_std, per_run_gpu_used, per_run_gpu_used_std]):
+                run_avg = aggregate(runs)
+                data[o][f"{k}"].append(run_avg)
+
+        for N in fake_nodes:
+            folder = f"nodes_{N}_fake/opt_{o}_run_0"
+            construct_vals, calibrate_vals, gpu_peak_vals , gpu_used_vals = [], [], [], []
+
+            for rank in range(4):
+                file = os.path.join(folder, f"log_{rank}.json")
+                if os.path.exists(file):
+                    with open(file, "r") as f:
+                        log = json.load(f)
+                    t = log.get("timers", {})
+                    g = log.get("gpu_mem", {})
+                    construct_vals.append(t.get("time_construct", 0) / 1e9)
+                    calibrate_vals.append(t.get("time_calibrate", 0) / 1e9)
+                    gpu_peak_vals.append(g.get("gpu_mem_peak", 0) / (2**30))
+                    gpu_used_vals.append(g.get("gpu_mem_used", 0) / (2**30))
+
+            data[o]["fake_construct"].append(safe_mean(construct_vals))
+            data[o]["fake_calibrate"].append(safe_mean(calibrate_vals))
+            data[o]["fake_gpu_mem_peak"].append(safe_mean(gpu_peak_vals))
+            data[o]["fake_gpu_mem_used"].append(safe_mean(gpu_used_vals))
+
+    return data
+
+def plot_time_figure_real_only(data, real_nodes, quantity, ylabel, title, filename):
+    fig, axs = plt.subplots(3, 1, figsize=(8, 12), sharex=True)
+    for idx, o in enumerate(opt_levels_partial):
+        ax = axs[idx]
+        avg = np.squeeze(np.array(data[o][f"{quantity}_avg"]))
+        std = np.squeeze(np.array(data[o][f"{quantity}_std"]))
+        mx = np.array(data[o][f"{quantity}_max"])
+        mn = np.array(data[o][f"{quantity}_min"])
+
+        print(f"{quantity}_avg")
+        print(f"{quantity}_std")
+        print(avg.shape)
+        print(std.shape)
+        ax.errorbar(real_nodes, avg, yerr=std, fmt='o-', capsize=5, label="Avg ± Std")
+        ax.plot(real_nodes, mx, 's--', label="Max")
+        ax.plot(real_nodes, mn, 'd-.', label="Min")
+
+        ax.set_title(f"Optimization Level {o}")
+        ax.set_ylabel(ylabel)
+        ax.set_xlim(0, max(real_nodes)*1.05)
+        ax.set_ylim(bottom=0)
+        ax.grid(True)
+        ax.legend()
+
+    axs[-1].set_xlabel("Number of Nodes")
+    fig.suptitle(title)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.savefig(filename, format="pdf", bbox_inches="tight")
+    print(f"Saved {filename}")
+
+
+def plot_simulate_time(data, real_nodes, ylabel, title, filename):
+    fig, axs = plt.subplots(2, 2, figsize=(12, 10), sharex=True)
+    axs = axs.flatten()
+
+    for o in opt_levels_all:
+        ax = axs[o]
+        avg = np.squeeze(np.array(data[o]["simulate_avg"]))
+        std = np.squeeze(np.array(data[o]["simulate_std"]))
+        mx = np.array(data[o]["simulate_max"])
+        mn = np.array(data[o]["simulate_min"])
+        
+        ax.errorbar(real_nodes, avg, yerr=std, fmt='o-', capsize=5, label="Avg ± Std")
+        ax.plot(real_nodes, mx, 's--', label="Max")
+        ax.plot(real_nodes, mn, 'd-.', label="Min")
+
+        ax.set_title("Optimization Level {}".format(o) if o < 3 else "Without spike recording")
+        ax.set_ylabel(ylabel)
+        ax.set_xlim(0, max(real_nodes)*1.05)
+        ax.set_ylim(bottom=0)
+        ax.grid(True)
+        ax.legend()
+
+    axs[-1].set_xlabel("Number of Nodes")
+    fig.suptitle(title)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.savefig(filename, format="pdf", bbox_inches="tight")
+    print(f"Saved {filename}")
+
+def plot_extended_time(data, real_nodes, fake_nodes, quantity, title, filename):
+    fig, axs = plt.subplots(3, 1, figsize=(8, 12), sharex=True)
+
+    for idx, o in enumerate(opt_levels_partial):
+        ax = axs[idx]
+        avg = np.squeeze(np.array(data[o][f"{quantity}_avg"]))
+        std = np.squeeze(np.array(data[o][f"{quantity}_std"]))
+        mx = np.array(data[o][f"{quantity}_max"])
+        mn = np.array(data[o][f"{quantity}_min"])
+        fake = np.array(data[o][f"fake_{quantity}"])
+
+        ax.errorbar(real_nodes, avg, yerr=std, fmt='o-', capsize=5, label="Real Avg ± Std")
+        ax.plot(real_nodes, mx, 's--', label="Real Max")
+        ax.plot(real_nodes, mn, 'd-.', label="Real Min")
+        ax.plot(fake_nodes, fake, 'b:', label="Estimate")
+
+        ax.set_title(f"Optimization Level {o}")
+        ax.set_ylabel("Time (s)")
+        ax.set_ylim(bottom=0)
+        ax.grid(True)
+        ax.legend()
+
+    axs[-1].set_xlabel("Number of Nodes")
+    fig.suptitle(title)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.savefig(filename, format="pdf", bbox_inches="tight")
+    print(f"Saved {filename}")
+
+def plot_gpu_memory(data, real_nodes, fake_nodes, filename):
+    fig, axs = plt.subplots(3, 1, figsize=(8, 12), sharex=True)
+
+    for idx, o in enumerate(opt_levels_partial):
+        ax = axs[idx]
+        real = np.squeeze(np.array(data[o]["gpu_mem_peak"]))
+        real_std = np.squeeze(np.array(data[o]["gpu_mem_peak_std"]))
+        fake = np.array(data[o]["fake_gpu_mem_peak"])
+
+        #ax.plot(real_nodes, real, 'o-', label="Real")
+        ax.errorbar(real_nodes, real, yerr=real_std, fmt='o-', capsize=5, label="Real Avg ± Std")
+        ax.plot(fake_nodes, fake, 'b:', label="Estimate")
+
+        ax.set_title(f"Optimization Level {o}")
+        ax.set_ylabel("GPU Mem (GiB)")
+        ax.set_ylim(bottom=0)
+        ax.grid(True)
+        ax.legend()
+
+    axs[-1].set_xlabel("Number of Nodes")
+    fig.suptitle("Figure 6 - GPU Memory Peak")
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.savefig(filename, format="pdf", bbox_inches="tight")
+    print(f"Saved {filename}")
+
+def plot_model_size(data, fake_nodes, filename):
+    o = 0
+    neurons = data[o]["n_neurons"]
+    connections = data[o]["n_connections"]
+    fig, axs = plt.subplots(2, 1, figsize=(12, 10), sharex=True)
+
+    axs[0].plot(fake_nodes, neurons, 'o-')
+    axs[0].set_ylabel("Number of Neurons")
+    axs[0].set_ylim(bottom=0)
+    axs[0].grid(True)
+
+    axs[1].plot(fake_nodes, connections, 'o-')
+    axs[1].set_ylabel("Number of Connections")
+    axs[1].set_xlabel("Number of Nodes")
+    axs[1].set_ylim(bottom=0)
+    axs[1].grid(True)
+
+    fig.suptitle("Figure 7 - Model Size")
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.savefig(filename, format="pdf", bbox_inches="tight")
+    print(f"Saved {filename}")
+
+data = load_and_aggregate_data()
+
+plot_time_figure_real_only(data, real_nodes, "construct", "Time (s)", "Figure 1 - Construct Time", "figure_1_construct.pdf")
+plot_time_figure_real_only(data, real_nodes, "calibrate", "Time (s)", "Figure 2 - Calibrate Time", "figure_2_calibrate.pdf")
+plot_simulate_time(data, real_nodes, "Time (s)", "Figure 3 - Simulate Time", "figure_3_simulate.pdf")
+
+plot_extended_time(data, real_nodes, fake_nodes, "construct", "Figure 4 - Extended Construct Time", "figure_4_extended_construct.pdf")
+plot_extended_time(data, real_nodes, fake_nodes, "calibrate", "Figure 5 - Extended Calibrate Time", "figure_5_extended_calibrate.pdf")
+
+plot_gpu_memory(data, real_nodes, fake_nodes, "figure_6_gpu_memory_peak.pdf")
+plot_model_size(data, fake_nodes, "figure_7_model_size.pdf")
+
+plt.show()

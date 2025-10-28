@@ -1,0 +1,353 @@
+,Nodes,Time (s),Quantity,Type,Hue
+0,32,1.633820040703125,Construct,Real,Opt 0
+1,32,1.644304684015625,Construct,Real,Opt 0
+2,32,1.6395609405390625,Construct,Real,Opt 0
+3,32,1.6312818806171874,Construct,Real,Opt 0
+4,32,1.639495892546875,Construct,Real,Opt 0
+5,64,1.8855108980117188,Construct,Real,Opt 0
+6,64,1.8853452895664062,Construct,Real,Opt 0
+7,64,2.0428887029179688,Construct,Real,Opt 0
+8,64,2.0304751321640624,Construct,Real,Opt 0
+9,64,1.8772288811523439,Construct,Real,Opt 0
+10,96,2.1345449484739585,Construct,Real,Opt 0
+11,96,2.116908571075521,Construct,Real,Opt 0
+12,96,2.134058096679688,Construct,Real,Opt 0
+13,96,2.125762881742187,Construct,Real,Opt 0
+14,96,2.1202044209609374,Construct,Real,Opt 0
+15,128,2.364340235169922,Construct,Real,Opt 0
+16,128,2.3515902887031253,Construct,Real,Opt 0
+17,128,2.3837250632207034,Construct,Real,Opt 0
+18,128,2.3772745334316405,Construct,Real,Opt 0
+19,128,2.3703668362714847,Construct,Real,Opt 0
+20,192,2.8585072362708335,Construct,Real,Opt 0
+21,192,2.84081719797526,Construct,Real,Opt 0
+22,192,2.864560026253906,Construct,Real,Opt 0
+23,192,2.8427359468398437,Construct,Real,Opt 0
+24,192,2.8630112068763025,Construct,Real,Opt 0
+25,256,3.347616823619141,Construct,Real,Opt 0
+26,256,3.3159153901787106,Construct,Real,Opt 0
+27,256,3.32476227915625,Construct,Real,Opt 0
+28,256,3.317416373336914,Construct,Real,Opt 0
+29,256,3.3441343252480467,Construct,Real,Opt 0
+30,32,1.5884201880000002,Construct,Estimate,Opt 0 Estimate
+31,64,1.78217936725,Construct,Estimate,Opt 0 Estimate
+32,96,1.93662765675,Construct,Estimate,Opt 0 Estimate
+33,128,2.0962114764999997,Construct,Estimate,Opt 0 Estimate
+34,192,2.4226337075,Construct,Estimate,Opt 0 Estimate
+35,256,2.8003841729999994,Construct,Estimate,Opt 0 Estimate
+36,512,4.1558396965,Construct,Estimate,Opt 0 Estimate
+37,1024,7.03996155325,Construct,Estimate,Opt 0 Estimate
+38,1536,9.836945857,Construct,Estimate,Opt 0 Estimate
+39,2048,12.925131358,Construct,Estimate,Opt 0 Estimate
+40,2560,15.959557734,Construct,Estimate,Opt 0 Estimate
+41,3072,19.09909142675,Construct,Estimate,Opt 0 Estimate
+42,3584,22.1577494325,Construct,Estimate,Opt 0 Estimate
+43,4096,26.24464453275,Construct,Estimate,Opt 0 Estimate
+44,32,1.9587400985546877,Calibrate,Real,Opt 0
+45,32,1.9586544650625002,Calibrate,Real,Opt 0
+46,32,1.9607034615,Calibrate,Real,Opt 0
+47,32,1.9576955905312499,Calibrate,Real,Opt 0
+48,32,1.9595107073984375,Calibrate,Real,Opt 0
+49,64,2.335959026125,Calibrate,Real,Opt 0
+50,64,2.3357774134218747,Calibrate,Real,Opt 0
+51,64,2.3355580831679683,Calibrate,Real,Opt 0
+52,64,2.33536554715625,Calibrate,Real,Opt 0
+53,64,2.3368476876835937,Calibrate,Real,Opt 0
+54,96,2.665999200328125,Calibrate,Real,Opt 0
+55,96,2.666268622151042,Calibrate,Real,Opt 0
+56,96,2.6660481095729165,Calibrate,Real,Opt 0
+57,96,2.6665924361093754,Calibrate,Real,Opt 0
+58,96,2.666338678515625,Calibrate,Real,Opt 0
+59,128,2.9553836055253906,Calibrate,Real,Opt 0
+60,128,2.955679184941406,Calibrate,Real,Opt 0
+61,128,2.9550804078964843,Calibrate,Real,Opt 0
+62,128,2.9547498893710937,Calibrate,Real,Opt 0
+63,128,2.9554916475917965,Calibrate,Real,Opt 0
+64,192,3.504471382016927,Calibrate,Real,Opt 0
+65,192,3.5044151928072913,Calibrate,Real,Opt 0
+66,192,3.504773774313802,Calibrate,Real,Opt 0
+67,192,3.5046313766341144,Calibrate,Real,Opt 0
+68,192,3.504885043260417,Calibrate,Real,Opt 0
+69,256,4.046440577749023,Calibrate,Real,Opt 0
+70,256,4.047416416421875,Calibrate,Real,Opt 0
+71,256,4.0463337651640625,Calibrate,Real,Opt 0
+72,256,4.046055135892578,Calibrate,Real,Opt 0
+73,256,4.046013291412109,Calibrate,Real,Opt 0
+74,32,1.9531251825,Calibrate,Estimate,Opt 0 Estimate
+75,64,2.3339324657500002,Calibrate,Estimate,Opt 0 Estimate
+76,96,2.66548169675,Calibrate,Estimate,Opt 0 Estimate
+77,128,2.93336710625,Calibrate,Estimate,Opt 0 Estimate
+78,192,3.5218693272499997,Calibrate,Estimate,Opt 0 Estimate
+79,256,4.039839666000001,Calibrate,Estimate,Opt 0 Estimate
+80,512,6.15590415725,Calibrate,Estimate,Opt 0 Estimate
+81,1024,10.13906078175,Calibrate,Estimate,Opt 0 Estimate
+82,1536,13.2341449345,Calibrate,Estimate,Opt 0 Estimate
+83,2048,15.983712027750002,Calibrate,Estimate,Opt 0 Estimate
+84,2560,18.33608477275,Calibrate,Estimate,Opt 0 Estimate
+85,3072,20.238087927499997,Calibrate,Estimate,Opt 0 Estimate
+86,3584,22.117661356,Calibrate,Estimate,Opt 0 Estimate
+87,4096,23.7926423525,Calibrate,Estimate,Opt 0 Estimate
+88,32,1.6848496019609376,Construct,Real,Opt 1
+89,32,1.5425030947187501,Construct,Real,Opt 1
+90,32,1.5398908228203125,Construct,Real,Opt 1
+91,32,1.5428125951562501,Construct,Real,Opt 1
+92,32,1.5390636226328125,Construct,Real,Opt 1
+93,64,1.715822300640625,Construct,Real,Opt 1
+94,64,1.721611707488281,Construct,Real,Opt 1
+95,64,1.703982946027344,Construct,Real,Opt 1
+96,64,1.7821905994375,Construct,Real,Opt 1
+97,64,1.7440682873867188,Construct,Real,Opt 1
+98,96,1.9454627305989582,Construct,Real,Opt 1
+99,96,1.9291826401197916,Construct,Real,Opt 1
+100,96,1.9406749286145832,Construct,Real,Opt 1
+101,96,2.184944921421875,Construct,Real,Opt 1
+102,96,2.157690502057292,Construct,Real,Opt 1
+103,128,2.012280268431641,Construct,Real,Opt 1
+104,128,2.0229470766875,Construct,Real,Opt 1
+105,128,2.0104968783222654,Construct,Real,Opt 1
+106,128,1.9918826852070313,Construct,Real,Opt 1
+107,128,2.018508426511719,Construct,Real,Opt 1
+108,192,2.329919508109375,Construct,Real,Opt 1
+109,192,2.3260488136445314,Construct,Real,Opt 1
+110,192,2.3047848408828124,Construct,Real,Opt 1
+111,192,2.306369654355469,Construct,Real,Opt 1
+112,192,2.329994209842448,Construct,Real,Opt 1
+113,256,2.6440260466259766,Construct,Real,Opt 1
+114,256,2.6595860593232423,Construct,Real,Opt 1
+115,256,2.649613825286133,Construct,Real,Opt 1
+116,256,2.6458963795078123,Construct,Real,Opt 1
+117,256,2.6132438765009764,Construct,Real,Opt 1
+118,32,1.50169559225,Construct,Estimate,Opt 1 Estimate
+119,64,1.6017913090000002,Construct,Estimate,Opt 1 Estimate
+120,96,1.65064380975,Construct,Estimate,Opt 1 Estimate
+121,128,1.7248059169999999,Construct,Estimate,Opt 1 Estimate
+122,192,1.9219189875,Construct,Estimate,Opt 1 Estimate
+123,256,2.087161201,Construct,Estimate,Opt 1 Estimate
+124,512,2.78414366725,Construct,Estimate,Opt 1 Estimate
+125,1024,4.251502434000001,Construct,Estimate,Opt 1 Estimate
+126,1536,5.7337673215,Construct,Estimate,Opt 1 Estimate
+127,2048,7.62286225475,Construct,Estimate,Opt 1 Estimate
+128,2560,9.25116462025,Construct,Estimate,Opt 1 Estimate
+129,3072,11.04993511925,Construct,Estimate,Opt 1 Estimate
+130,3584,12.96647680875,Construct,Estimate,Opt 1 Estimate
+131,4096,15.22665205925,Construct,Estimate,Opt 1 Estimate
+132,32,1.9323130527421875,Calibrate,Real,Opt 1
+133,32,1.9331893544453125,Calibrate,Real,Opt 1
+134,32,1.934666739828125,Calibrate,Real,Opt 1
+135,32,1.9337490938203126,Calibrate,Real,Opt 1
+136,32,1.9337415138515626,Calibrate,Real,Opt 1
+137,64,2.3163552718515623,Calibrate,Real,Opt 1
+138,64,2.31682873840625,Calibrate,Real,Opt 1
+139,64,2.317836325996094,Calibrate,Real,Opt 1
+140,64,2.318792913625,Calibrate,Real,Opt 1
+141,64,2.31949099409375,Calibrate,Real,Opt 1
+142,96,2.6492755680520834,Calibrate,Real,Opt 1
+143,96,2.651330783893229,Calibrate,Real,Opt 1
+144,96,2.6492869946979165,Calibrate,Real,Opt 1
+145,96,2.6510094405546876,Calibrate,Real,Opt 1
+146,96,2.650369338778646,Calibrate,Real,Opt 1
+147,128,2.9389001536894535,Calibrate,Real,Opt 1
+148,128,2.939378428126953,Calibrate,Real,Opt 1
+149,128,2.940604844835937,Calibrate,Real,Opt 1
+150,128,2.9395425937460935,Calibrate,Real,Opt 1
+151,128,2.9401915790546878,Calibrate,Real,Opt 1
+152,192,3.47965353027474,Calibrate,Real,Opt 1
+153,192,3.4800949935416665,Calibrate,Real,Opt 1
+154,192,3.476728895684895,Calibrate,Real,Opt 1
+155,192,3.4789882104505208,Calibrate,Real,Opt 1
+156,192,3.4795331170846358,Calibrate,Real,Opt 1
+157,256,4.018467740358398,Calibrate,Real,Opt 1
+158,256,4.018263961504883,Calibrate,Real,Opt 1
+159,256,4.019913964396484,Calibrate,Real,Opt 1
+160,256,4.019464446162109,Calibrate,Real,Opt 1
+161,256,4.017629436753906,Calibrate,Real,Opt 1
+162,32,1.9345665272500001,Calibrate,Estimate,Opt 1 Estimate
+163,64,2.31935533,Calibrate,Estimate,Opt 1 Estimate
+164,96,2.660578151,Calibrate,Estimate,Opt 1 Estimate
+165,128,2.95605051275,Calibrate,Estimate,Opt 1 Estimate
+166,192,3.4755853895,Calibrate,Estimate,Opt 1 Estimate
+167,256,4.033735009,Calibrate,Estimate,Opt 1 Estimate
+168,512,6.1424429115,Calibrate,Estimate,Opt 1 Estimate
+169,1024,10.60022197025,Calibrate,Estimate,Opt 1 Estimate
+170,1536,15.493286444,Calibrate,Estimate,Opt 1 Estimate
+171,2048,20.836908713,Calibrate,Estimate,Opt 1 Estimate
+172,2560,26.356264253250004,Calibrate,Estimate,Opt 1 Estimate
+173,3072,32.047763900999996,Calibrate,Estimate,Opt 1 Estimate
+174,3584,37.530593659750004,Calibrate,Estimate,Opt 1 Estimate
+175,4096,42.624783259,Calibrate,Estimate,Opt 1 Estimate
+176,32,1.6218983688593749,Construct,Real,Opt 2
+177,32,1.618778046125,Construct,Real,Opt 2
+178,32,1.5986846086640623,Construct,Real,Opt 2
+179,32,1.5956400238359374,Construct,Real,Opt 2
+180,32,1.5360019323281249,Construct,Real,Opt 2
+181,64,1.7786687866250002,Construct,Real,Opt 2
+182,64,1.810576810167969,Construct,Real,Opt 2
+183,64,1.8502473973789062,Construct,Real,Opt 2
+184,64,1.8273340253867187,Construct,Real,Opt 2
+185,64,1.8407930795039065,Construct,Real,Opt 2
+186,96,2.0986498402213543,Construct,Real,Opt 2
+187,96,2.1472051183151044,Construct,Real,Opt 2
+188,96,1.8932767456302084,Construct,Real,Opt 2
+189,96,1.88889050440625,Construct,Real,Opt 2
+190,96,1.9017406791458333,Construct,Real,Opt 2
+191,128,1.9998048821171877,Construct,Real,Opt 2
+192,128,2.002984861232422,Construct,Real,Opt 2
+193,128,1.9790837385292968,Construct,Real,Opt 2
+194,128,2.0204384006699216,Construct,Real,Opt 2
+195,128,2.017751895357422,Construct,Real,Opt 2
+196,192,2.284547330959635,Construct,Real,Opt 2
+197,192,2.2976751483177082,Construct,Real,Opt 2
+198,192,2.3109538187721355,Construct,Real,Opt 2
+199,192,2.3275104883346356,Construct,Real,Opt 2
+200,192,2.3138048266315105,Construct,Real,Opt 2
+201,256,2.6344591858125,Construct,Real,Opt 2
+202,256,2.6347439944375,Construct,Real,Opt 2
+203,256,2.64261696059082,Construct,Real,Opt 2
+204,256,2.6212505860585935,Construct,Real,Opt 2
+205,256,2.629313451427734,Construct,Real,Opt 2
+206,32,1.5129763715,Construct,Estimate,Opt 2 Estimate
+207,64,1.6003837425,Construct,Estimate,Opt 2 Estimate
+208,96,1.65845524225,Construct,Estimate,Opt 2 Estimate
+209,128,1.7532629355,Construct,Estimate,Opt 2 Estimate
+210,192,1.9191726505,Construct,Estimate,Opt 2 Estimate
+211,256,2.0961026835000003,Construct,Estimate,Opt 2 Estimate
+212,512,2.8195594835,Construct,Estimate,Opt 2 Estimate
+213,1024,4.25484287875,Construct,Estimate,Opt 2 Estimate
+214,1536,5.811411837,Construct,Estimate,Opt 2 Estimate
+215,2048,7.513877109250001,Construct,Estimate,Opt 2 Estimate
+216,2560,9.2541308095,Construct,Estimate,Opt 2 Estimate
+217,3072,10.97264959325,Construct,Estimate,Opt 2 Estimate
+218,3584,13.007499764999999,Construct,Estimate,Opt 2 Estimate
+219,4096,15.496398223749999,Construct,Estimate,Opt 2 Estimate
+220,32,1.7987695630078124,Calibrate,Real,Opt 2
+221,32,1.7989472980078123,Calibrate,Real,Opt 2
+222,32,1.7987610725624998,Calibrate,Real,Opt 2
+223,32,1.7992504170312502,Calibrate,Real,Opt 2
+224,32,1.7988621709843748,Calibrate,Real,Opt 2
+225,64,2.046340208742188,Calibrate,Real,Opt 2
+226,64,2.0476394750624998,Calibrate,Real,Opt 2
+227,64,2.0474624738125,Calibrate,Real,Opt 2
+228,64,2.0475235285390627,Calibrate,Real,Opt 2
+229,64,2.0462981741445314,Calibrate,Real,Opt 2
+230,96,2.245051960359375,Calibrate,Real,Opt 2
+231,96,2.2438537776197918,Calibrate,Real,Opt 2
+232,96,2.2450026343645835,Calibrate,Real,Opt 2
+233,96,2.2445042509947917,Calibrate,Real,Opt 2
+234,96,2.2446752881041667,Calibrate,Real,Opt 2
+235,128,2.4143817779453123,Calibrate,Real,Opt 2
+236,128,2.4132827526152343,Calibrate,Real,Opt 2
+237,128,2.4131383290332034,Calibrate,Real,Opt 2
+238,128,2.413286660941406,Calibrate,Real,Opt 2
+239,128,2.413289423828125,Calibrate,Real,Opt 2
+240,192,2.7168595825651045,Calibrate,Real,Opt 2
+241,192,2.715696590165365,Calibrate,Real,Opt 2
+242,192,2.7153040992669273,Calibrate,Real,Opt 2
+243,192,2.71621848064974,Calibrate,Real,Opt 2
+244,192,2.715570528841146,Calibrate,Real,Opt 2
+245,256,3.0181841829726563,Calibrate,Real,Opt 2
+246,256,3.0178638826962887,Calibrate,Real,Opt 2
+247,256,3.0188067338154294,Calibrate,Real,Opt 2
+248,256,3.0182632854853515,Calibrate,Real,Opt 2
+249,256,3.016919404401367,Calibrate,Real,Opt 2
+250,32,1.8044967475,Calibrate,Estimate,Opt 2 Estimate
+251,64,2.057755575,Calibrate,Estimate,Opt 2 Estimate
+252,96,2.2555687394999997,Calibrate,Estimate,Opt 2 Estimate
+253,128,2.421030583,Calibrate,Estimate,Opt 2 Estimate
+254,192,2.73703084525,Calibrate,Estimate,Opt 2 Estimate
+255,256,3.05059539225,Calibrate,Estimate,Opt 2 Estimate
+256,512,4.2735772675,Calibrate,Estimate,Opt 2 Estimate
+257,1024,6.6766042272499995,Calibrate,Estimate,Opt 2 Estimate
+258,1536,9.10192238825,Calibrate,Estimate,Opt 2 Estimate
+259,2048,11.544927559500001,Calibrate,Estimate,Opt 2 Estimate
+260,2560,14.2009294455,Calibrate,Estimate,Opt 2 Estimate
+261,3072,16.087471878,Calibrate,Estimate,Opt 2 Estimate
+262,3584,18.64521880325,Calibrate,Estimate,Opt 2 Estimate
+263,4096,21.053702482499997,Calibrate,Estimate,Opt 2 Estimate
+264,32,1.5431086998515624,Construct,Real,Opt 3
+265,32,1.5512056036093749,Construct,Real,Opt 3
+266,32,1.5464083444765624,Construct,Real,Opt 3
+267,32,1.541934057734375,Construct,Real,Opt 3
+268,32,1.5326146646640624,Construct,Real,Opt 3
+269,64,1.8296395512578125,Construct,Real,Opt 3
+270,64,1.764671102625,Construct,Real,Opt 3
+271,64,1.7191129257265625,Construct,Real,Opt 3
+272,64,1.723813580828125,Construct,Real,Opt 3
+273,64,1.8672519616445313,Construct,Real,Opt 3
+274,96,1.8965923334453123,Construct,Real,Opt 3
+275,96,1.8848834565651043,Construct,Real,Opt 3
+276,96,1.8797067083619794,Construct,Real,Opt 3
+277,96,1.8698956418802084,Construct,Real,Opt 3
+278,96,1.8939301472499999,Construct,Real,Opt 3
+279,128,1.9949492506113282,Construct,Real,Opt 3
+280,128,2.0202559673945313,Construct,Real,Opt 3
+281,128,2.016540216939453,Construct,Real,Opt 3
+282,128,1.999736759763672,Construct,Real,Opt 3
+283,128,1.9903419930000001,Construct,Real,Opt 3
+284,192,2.3178495275924482,Construct,Real,Opt 3
+285,192,2.327061816809896,Construct,Real,Opt 3
+286,192,2.3303877915716145,Construct,Real,Opt 3
+287,192,2.311631286669271,Construct,Real,Opt 3
+288,192,2.281849396205729,Construct,Real,Opt 3
+289,256,2.6007458951015625,Construct,Real,Opt 3
+290,256,2.656801363756836,Construct,Real,Opt 3
+291,256,2.637134239727539,Construct,Real,Opt 3
+292,256,2.623649690083008,Construct,Real,Opt 3
+293,256,2.6395196474951175,Construct,Real,Opt 3
+294,32,1.4904022545,Construct,Estimate,Opt 3 Estimate
+295,64,1.6327349342500002,Construct,Estimate,Opt 3 Estimate
+296,96,1.6682066894999998,Construct,Estimate,Opt 3 Estimate
+297,128,1.74771384475,Construct,Estimate,Opt 3 Estimate
+298,192,1.93385125225,Construct,Estimate,Opt 3 Estimate
+299,256,2.07947352325,Construct,Estimate,Opt 3 Estimate
+300,512,2.7787474777499996,Construct,Estimate,Opt 3 Estimate
+301,1024,4.3093822865,Construct,Estimate,Opt 3 Estimate
+302,1536,5.84083768475,Construct,Estimate,Opt 3 Estimate
+303,2048,7.526892255750001,Construct,Estimate,Opt 3 Estimate
+304,2560,9.1586716205,Construct,Estimate,Opt 3 Estimate
+305,3072,10.9415843165,Construct,Estimate,Opt 3 Estimate
+306,3584,13.042961986249999,Construct,Estimate,Opt 3 Estimate
+307,4096,15.6798040335,Construct,Estimate,Opt 3 Estimate
+308,32,1.7995157648203124,Calibrate,Real,Opt 3
+309,32,1.7995598228984373,Calibrate,Real,Opt 3
+310,32,1.798425960015625,Calibrate,Real,Opt 3
+311,32,1.798501381078125,Calibrate,Real,Opt 3
+312,32,1.7987767280078124,Calibrate,Real,Opt 3
+313,64,2.048039254253906,Calibrate,Real,Opt 3
+314,64,2.046945978304687,Calibrate,Real,Opt 3
+315,64,2.047000711980469,Calibrate,Real,Opt 3
+316,64,2.0473422619765627,Calibrate,Real,Opt 3
+317,64,2.047490075515625,Calibrate,Real,Opt 3
+318,96,2.2449876528463544,Calibrate,Real,Opt 3
+319,96,2.2457567573567707,Calibrate,Real,Opt 3
+320,96,2.2452751720078123,Calibrate,Real,Opt 3
+321,96,2.24595851209375,Calibrate,Real,Opt 3
+322,96,2.2444497101666667,Calibrate,Real,Opt 3
+323,128,2.4145430999472657,Calibrate,Real,Opt 3
+324,128,2.414446330244141,Calibrate,Real,Opt 3
+325,128,2.414619390339844,Calibrate,Real,Opt 3
+326,128,2.4142821134218746,Calibrate,Real,Opt 3
+327,128,2.4141984116074218,Calibrate,Real,Opt 3
+328,192,2.716550624550781,Calibrate,Real,Opt 3
+329,192,2.7174461069023437,Calibrate,Real,Opt 3
+330,192,2.717002949829427,Calibrate,Real,Opt 3
+331,192,2.7179144630651044,Calibrate,Real,Opt 3
+332,192,2.717602039839844,Calibrate,Real,Opt 3
+333,256,3.0212567779375,Calibrate,Real,Opt 3
+334,256,3.019296425991211,Calibrate,Real,Opt 3
+335,256,3.0187563474648433,Calibrate,Real,Opt 3
+336,256,3.019732638082031,Calibrate,Real,Opt 3
+337,256,3.0188015226865232,Calibrate,Real,Opt 3
+338,32,1.80689983425,Calibrate,Estimate,Opt 3 Estimate
+339,64,2.0490117495,Calibrate,Estimate,Opt 3 Estimate
+340,96,2.2539482285,Calibrate,Estimate,Opt 3 Estimate
+341,128,2.428188328,Calibrate,Estimate,Opt 3 Estimate
+342,192,2.730195349,Calibrate,Estimate,Opt 3 Estimate
+343,256,3.06499925925,Calibrate,Estimate,Opt 3 Estimate
+344,512,4.25208544275,Calibrate,Estimate,Opt 3 Estimate
+345,1024,6.694580845499999,Calibrate,Estimate,Opt 3 Estimate
+346,1536,9.075547748750001,Calibrate,Estimate,Opt 3 Estimate
+347,2048,11.517781592,Calibrate,Estimate,Opt 3 Estimate
+348,2560,13.852263526999998,Calibrate,Estimate,Opt 3 Estimate
+349,3072,16.25336410525,Calibrate,Estimate,Opt 3 Estimate
+350,3584,18.90428335,Calibrate,Estimate,Opt 3 Estimate
+351,4096,21.441643569,Calibrate,Estimate,Opt 3 Estimate
