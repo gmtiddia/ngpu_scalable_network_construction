@@ -9,7 +9,7 @@ Citation
 <br>
 
 ## Requirements
-To run the simulations, NEST GPU version offboard and version onboard are required.
+To run the simulations, NEST GPU version [offboard]() and version [onboard]() are required.
 
 For installation instructions on the simulators, see [NEST GPU Documentation](https://nest-gpu.readthedocs.io/en/latest/installation/index.html).
 
@@ -31,10 +31,9 @@ The [scalable_network_model](scalable_network_model/) directory contains the scr
 
 
 ## Contact
-
 Gianmarco Tiddia, Department of Physics, University of Cagliary, Italy, Istituto Nazionale di Fisica Nucleare, Sezione di Cagliari, Italy, gianmarco.tiddia@ca.infn.it
 <br>
-Jose Villamar, Institute of Neuroscience and Medicine (INM-6), Institute for Advanced Simulation (IAS-6), JARA-Institute Brain Structure-Function Relationships (INM-10), Jülich Research Centre, Jülich, Germany, j.villamar@fz-juelich.de
+José Villamar, Institute for Advanced Simulation (IAS-6), Jülich Research Centre, Jülich, Germany, j.villamar@fz-juelich.de
 
 
 ## License
