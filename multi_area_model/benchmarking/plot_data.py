@@ -130,9 +130,10 @@ def plot_comparison(data: pd.DataFrame, state: str = "metastable"):
     """
     print(f"Generating original style plot for '{state}' state...")
     data_subset = data[data["state"] == state].copy()
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 9), constrained_layout=True)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 7), constrained_layout=True)
     plot_comparison_panels(ax1, ax2, data_subset)
-    plt.suptitle(f"Original Style Plot ({state} state)", fontsize=24 * size_factor)
+    ax1.text(-0.135, 1.05, 'a', fontsize=30, weight="bold", transform=ax1.transAxes)
+    ax2.text(-0.135, 1.05, 'b', fontsize=30, weight="bold", transform=ax2.transAxes)
     plt.savefig("version_comparison_plot.png", dpi=300); plt.show()
 
 def plot_scaling(bennchplot_filename: str):
@@ -145,30 +146,80 @@ def plot_scaling(bennchplot_filename: str):
     if not BENNCHPLOT_AVAILABLE: print("Cannot generate bennchplot plot."); return
     print(f"Generating bennchplot style plot from '{bennchplot_filename}'...")
     
-    args = {'data_file': bennchplot_filename, 'x_axis': ['nodes'], 'time_scaling': 1.0}
-    B = bp.Plot(**args)
+    fig = plt.figure(figsize=(18, 8))
 
-    fig = plt.figure(figsize=(13.5, 7), constrained_layout=True)
-    spec = gridspec.GridSpec(ncols=2, nrows=2, figure=fig, width_ratios=[1, 1], height_ratios=[3, 1])
-    ax1, ax2, ax3 = fig.add_subplot(spec[:, 0]), fig.add_subplot(spec[0, 1]), fig.add_subplot(spec[1, 1])
+    spec = gridspec.GridSpec(ncols=2, nrows=1, figure=fig)
+    axC = fig.add_subplot(spec[0, 1])
 
-    for ax, label in zip([ax1, ax2, ax3], ["a", "b", "c"]):
-        ax.text(-0.15, 1.05 if label != "C" else 1.4, label, fontsize=25, weight="bold", transform=ax.transAxes)
-    
-    B.plot_fractions(axis=ax1, fill_variables=['total_constr', 'time_simulate'], interpolate=True, step=None, error=True)
+    subspec = spec[0, 0].subgridspec(2, 1, height_ratios=[3, 1], hspace=0.4) # KNOB: Inner space D-E
+    axA = fig.add_subplot(subspec[0])
+    axB = fig.add_subplot(subspec[1])
+
+    # plotting panels
+    # Panels C, D, E (scaling)
+    B = bp.Plot(data_file=bennchplot_filename, x_axis=['nodes'], time_scaling=1.0)
     construction_vars = ['time_configure', 'time_area_packing', 'time_create_nodes', 'time_connect_local', 'time_connect_global', 'time_calibrate']
-    B.plot_fractions(axis=ax2, fill_variables=construction_vars, interpolate=True, step=None, error=True)
-    B.plot_main(quantities=['sim_factor'], axis=ax3, error=True, fmt='-', ecolor='black')
+    B.plot_fractions(axis=axC, fill_variables=construction_vars, interpolate=True, step=None, error=True)
+    B.plot_fractions(axis=axA, fill_variables=['total_constr', 'time_simulate'], interpolate=True, step=None, error=True)
+    B.plot_main(axis=axB, quantities=['sim_factor'], error=True, fmt='-', ecolor='black')
 
-    for ax in [ax1, ax2, ax3]: B.simple_axis(ax)
-    ax1.set_xlabel('Number of nodes'); ax1.set_ylabel(r'$T_{\mathrm{wall}}$ [s]'); ax1.set_yscale('log')
-    ax2.set_xlabel('Number of nodes'); ax2.set_ylabel('Network construction [s]'); ax2.set_ylim(0, 150)
-    ax3.set_xlabel('Number of nodes'); ax3.set_ylabel(r'$T_{\mathrm{wall}} / T_{\mathrm{model}}$')
+    # Panel C inset
+    axins = axC.inset_axes([0.5, 0.5, 0.45, 0.4]) # KNOB: Inset size/position
+    B.plot_fractions(axis=axins, fill_variables=construction_vars, interpolate=True, step=None, error=True)
+    if axins.get_legend() is not None: axins.get_legend().remove()
+    x1_zoom, x2_zoom = 1, 9
+    axins.set_xlim(x1_zoom, x2_zoom); axins.set_yscale('log')
+    axins.set_xlabel(''); axins.set_ylabel('')
+    axins.tick_params(axis='both', which='major', labelsize=10*size_factor)
 
-    h, l = ax1.get_legend_handles_labels(); ax1.legend(h[::-1], l[::-1])
-    h, l = ax2.get_legend_handles_labels(); ax2.legend(h[::-1], l[::-1], loc='upper right', bbox_to_anchor=[1.55, 0.8], ncols=1)
+    y1_box, y2_box = 0, 105
+    rect = Rectangle((x1_zoom, y1_box), x2_zoom - x1_zoom, y2_box - y1_box, edgecolor="gray", linestyle='-', facecolor="none", zorder=2)
+    axC.add_patch(rect)
+    con1 = ConnectionPatch(xyA=(0, 1), xyB=(x1_zoom, y2_box), coordsA="axes fraction", coordsB="data", axesA=axins, axesB=axC, color="silver", linestyle='-')
+    con2 = ConnectionPatch(xyA=(0, 0), xyB=(x1_zoom, y1_box), coordsA="axes fraction", coordsB="data", axesA=axins, axesB=axC, color="silver", linestyle='-')
+    fig.add_artist(con1); fig.add_artist(con2)
+
+    # legend
+    hC, lC = axC.get_legend_handles_labels()
+    axC.legend(hC[::-1], lC[::-1], fontsize=13*size_factor, loc='center left', bbox_to_anchor=[1.0, 0.5])
+
+    # panel labels
+    all_axes = [axA, axB, axC]
+    for ax, label in zip(all_axes, ["a", "b", "c"]):
+        if label != "c":
+            ax.text(-0.135, 1.05, label, fontsize=30, weight="bold", transform=ax.transAxes)
+        else:
+            ax.text(-0.1325, 1.032, label, fontsize=30, weight="bold", transform=ax.transAxes)
+        ax.grid(True)
+        B.simple_axis(ax)
     
-    plt.suptitle("Bennchplot Style Plot", fontsize=24 * size_factor)
+    
+    axC.set_xlabel('Number of nodes'); axC.set_ylabel('Network construction [s]')
+    axC.set_ylim(0, 150)
+    axA.set_ylabel('Time [s]')
+
+    axA.tick_params(axis='x', labelbottom=False)
+    
+    axA.set_yscale('log')
+
+    axA.set_yticks([60, 100, 200, 300, 400])
+
+    axA.yaxis.set_major_locator(FixedLocator([60, 100, 200, 300, 400]))
+    axA.yaxis.minorticks_off()
+
+    current_top_limit = axA.get_ylim()[1]
+    axA.set_ylim(bottom=50, top=current_top_limit)
+    
+    axA.yaxis.set_major_formatter(FuncFormatter(lambda y, _: f'{y:g}'))
+    axA.yaxis.set_minor_formatter(NullFormatter())
+    
+    h, l = axA.get_legend_handles_labels(); axA.legend(h[::-1], l[::-1], fontsize=13*size_factor)
+
+    axB.set_xlabel('Number of nodes'); axB.set_ylabel(r'$T_{\mathrm{wall}} / T_{\mathrm{model}}$')
+    
+    if axB.get_legend() is not None: axB.get_legend().remove()
+    
+    plt.subplots_adjust(hspace=0.4, wspace=0.19, left=0.05, right=0.815, top=0.93, bottom=0.1)
     plt.savefig("scaling_plot.png", dpi=300); plt.show()
 
 def plot_merged(original_plot_df: pd.DataFrame, bennchplot_filename: str, state: str = "metastable"):
@@ -297,12 +348,18 @@ def plot_comparison_panels(ax1, ax2, data_subset):
     sns.barplot(ax=ax1, data=stacked_constr, x="simulator", y="time_create_nodes_cum", label="Node creation", color=light.light_blue, errorbar='sd', capsize=0.015, err_kws=error_bar_properties)
     sns.barplot(ax=ax1, data=stacked_constr, x="simulator", y="time_initialize", label="Initialization", color=vibrant.orange, errorbar='sd', capsize=0.015, err_kws=error_bar_properties)
     ax1.set_xlabel('NEST GPU version'); ax1.set_ylabel('Network construction [s]')
-    ax1.legend()
+    ax1.grid()
+
+    h, l = ax1.get_legend_handles_labels()
+    l = ['Calibration', 'Remote connection', 'Local connection', 'Neuron and\ndevice creation', 'Initialization']
+
+    ax1.legend(h, l, fontsize=13*size_factor)
 
     # box plot for rtf
     sns.boxplot(ax=ax2, data=data_subset, x="simulator", y="sim_factor", linewidth=2.5, fill=False, color=light.pink,
                 flierprops=dict(marker='o', markerfacecolor=light.pink, markersize=7, markeredgecolor=light.pink))
     ax2.set_xlabel('NEST GPU version'); ax2.set_ylabel(r'$T_{\mathrm{wall}} / T_{\mathrm{model}}$')
+    ax2.grid()
 
 # main execution block
 if __name__ == "__main__":
@@ -311,7 +368,7 @@ if __name__ == "__main__":
     
     # set up command-line argument parsing
     parser = argparse.ArgumentParser(description="Generate benchmark plots from simulation data.")
-    parser.add_argument('--plot-type', type=str, choices=['comparison', 'scaling', 'merged'], default='merged', help='The type of plot to generate.')
+    parser.add_argument('--plot-type', type=str, choices=['comparison', 'scaling', 'merged'], default='comparison', help='The type of plot to generate.')
     parser.add_argument('--state', type=str, choices=['ground', 'metastable'], default='metastable', help="Simulation state for categorical plots.")
     parser.add_argument('--nsim', type=int, default=10, help="Number of simulations to process for the 'comparison' plot.")
     args = parser.parse_args()
