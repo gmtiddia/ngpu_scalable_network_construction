@@ -5,7 +5,7 @@ This repository contains the data and scripts used for the preprint: *preprint n
 If you want to cite this, use:
 <br>
 <br>
-Citation
+Tiddia, Villamar, Golosio, et al. 2025, [10.5281/zenodo.17627865](https://zenodo.org/records/17627865)
 <br>
 
 ## Requirements
