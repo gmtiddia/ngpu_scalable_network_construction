@@ -250,7 +250,7 @@ def plot_unified_time_as_barplot(df_unified, filename):
 
     fig, axs = plt.subplots(2, 1, figsize=(10, 13), sharey=False)
     quantities = ["Construct", "Calibrate"]
-    quantities_labels = {"Construct": "Neuron and device\ncreation and connection", "Calibrate": "Calibration"}
+    quantities_labels = {"Construct": "Neuron and device\ncreation and connection", "Calibrate": "Preparation"}
 
     # palette for the "Estimate" bars
     bar_palette = {}
@@ -564,7 +564,7 @@ if __name__ == "__main__":
         print("Data loaded successfully.")
 
         # generate plots
-        plot_unified_time_as_barplot(df_boxplot, "results_scale_{}/cond_construction_calibration_scale{}.pdf".format(scale, scale))
+        plot_unified_time_as_barplot(df_boxplot, "results_scale_{}/cond_construction_preparation_scale{}.pdf".format(scale, scale))
         plot_construction_and_simulation_time(data, real_nodes, "results_scale_{}/simulate_time{}.pdf".format(scale, scale))
         plot_gpu_memory_with_inset(data, real_nodes, fake_nodes, "results_scale_{}/gpu_memory_peak{}.pdf".format(scale, scale))
 
