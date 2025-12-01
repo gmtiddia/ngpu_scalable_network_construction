@@ -342,7 +342,7 @@ def plot_comparison_panels(ax1, ax2, data_subset):
 
     error_bar_properties = {'color': 'black', 'linewidth': 1.}
     
-    sns.barplot(ax=ax1, data=stacked_constr, x="simulator", y="time_calibrate_cum", label="Preparation", color=light.light_yellow, errorbar='sd', capsize=0.015, err_kws=error_bar_properties)
+    sns.barplot(ax=ax1, data=stacked_constr, x="simulator", y="time_calibrate_cum", label="Simulation preparation", color=light.light_yellow, errorbar='sd', capsize=0.015, err_kws=error_bar_properties)
     sns.barplot(ax=ax1, data=stacked_constr, x="simulator", y="time_connect_remote_cum", label="Remote connection", color=light.mint, errorbar='sd', capsize=0.015, err_kws=error_bar_properties)
     sns.barplot(ax=ax1, data=stacked_constr, x="simulator", y="time_connect_local_cum", label="Local connection", color=bright.green, errorbar='sd', capsize=0.015, err_kws=error_bar_properties)
     sns.barplot(ax=ax1, data=stacked_constr, x="simulator", y="time_create_nodes_cum", label="Node creation", color=light.light_blue, errorbar='sd', capsize=0.015, err_kws=error_bar_properties)
@@ -351,13 +351,20 @@ def plot_comparison_panels(ax1, ax2, data_subset):
     ax1.grid()
 
     h, l = ax1.get_legend_handles_labels()
-    l = ['Preparation', 'Remote connection', 'Local connection', 'Neuron and\ndevice creation', 'Initialization']
+    l = ['Simulation preparation', 'Remote connection', 'Local connection', 'Neuron and\ndevice creation', 'Initialization']
 
     ax1.legend(h, l, fontsize=13*size_factor)
 
+    meanprop={
+        "marker": "*",
+        "markerfacecolor": "firebrick",
+        "markeredgecolor": "firebrick",
+        "markersize": 12
+    }
+
     # box plot for rtf
     sns.boxplot(ax=ax2, data=data_subset, x="simulator", y="sim_factor", linewidth=2.5, fill=False, color=light.pink,
-                flierprops=dict(marker='o', markerfacecolor=light.pink, markersize=7, markeredgecolor=light.pink))
+                flierprops=dict(marker='o', markerfacecolor=light.pink, markersize=7, markeredgecolor=light.pink), meanline=False, showmeans=True, meanprops=meanprop)
     ax2.set_xlabel('NEST GPU version'); ax2.set_ylabel(r'$T_{\mathrm{wall}} / T_{\mathrm{model}}$')
     ax2.grid()
 

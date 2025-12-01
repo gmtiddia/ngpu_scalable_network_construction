@@ -250,7 +250,7 @@ def plot_unified_time_as_barplot(df_unified, filename):
 
     fig, axs = plt.subplots(2, 1, figsize=(10, 13), sharey=False)
     quantities = ["Construct", "Calibrate"]
-    quantities_labels = {"Construct": "Neuron and device\ncreation and connection", "Calibrate": "Preparation"}
+    quantities_labels = {"Construct": "Neuron and device\ncreation and connection", "Calibrate": "Simulation\npreparation"}
 
     # palette for the "Estimate" bars
     bar_palette = {}
