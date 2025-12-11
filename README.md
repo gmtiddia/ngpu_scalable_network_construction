@@ -1,6 +1,10 @@
 # NEST GPU Scalable Network Construction
 
-This repository contains the data and scripts used for the preprint: *preprint name*.
+This repository contains the data and scripts used for the preprint: 
+<br>
+<br>
+Golosio, B., Tiddia, G., Villamar, J., Pontisso, L., Sergi, L., Simula, F., Babu, P., Pastorelli, E., Morrison, A., Diesmann, M., Lonardo, A., Paolucci, P. S., & Senk, J. (2025). Scalable Construction of Spiking Neural Networks using up to thousands of GPUs. arXiv. [arXiv:2512.09502](https://doi.org/10.48550/ARXIV.2512.09502)
+<br>
 <br>
 If you want to cite this, use:
 <br>
