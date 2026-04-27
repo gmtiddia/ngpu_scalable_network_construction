@@ -85,13 +85,13 @@ if __name__ == "__main__":
 
     netcon_df = pandas.DataFrame(
         netcon_data_table,
-        columns=["Run Type", "Indegree Scale", "num_nodes", "num_gpus", "rank", "time"],
-    ).sort_values("Run Type", ascending=False)
+        columns=["Run type", "In-degree scale", "num_nodes", "num_gpus", "rank", "time"],
+    ).sort_values("Run type", ascending=False)
 
     calibrate_df = pandas.DataFrame(
         calibrate_data_table,
-        columns=["Run Type", "Indegree Scale", "num_nodes", "num_gpus", "rank", "time"],
-    ).sort_values("Run Type", ascending=False)
+        columns=["Run type", "In-degree scale", "num_nodes", "num_gpus", "rank", "time"],
+    ).sort_values("Run type", ascending=False)
 
     LOG.info(netcon_df.head)
     LOG.info(calibrate_df.head)
@@ -107,8 +107,8 @@ if __name__ == "__main__":
         netcon_df[netcon_df["num_nodes"] <= 256],  # pyright: ignore
         x="num_gpus",
         y="time",
-        style="Run Type",
-        hue="Indegree Scale",
+        style="Run type",
+        hue="In-degree scale",
         err_style="bars",
         ax=axd["ncs"],
         legend=False,
@@ -118,8 +118,8 @@ if __name__ == "__main__":
         calibrate_df[calibrate_df["num_nodes"] <= 256],  # pyright: ignore
         x="num_gpus",
         y="time",
-        style="Run Type",
-        hue="Indegree Scale",
+        style="Run type",
+        hue="In-degree scale",
         err_style="bars",
         ax=axd["cs"],
         legend=False,
@@ -129,8 +129,8 @@ if __name__ == "__main__":
         netcon_df,
         x="num_gpus",
         y="time",
-        style="Run Type",
-        hue="Indegree Scale",
+        style="Run type",
+        hue="In-degree scale",
         err_style="bars",
         ax=axd["nce"],
     )
@@ -139,8 +139,8 @@ if __name__ == "__main__":
         calibrate_df,
         x="num_gpus",
         y="time",
-        style="Run Type",
-        hue="Indegree Scale",
+        style="Run type",
+        hue="In-degree scale",
         err_style="bars",
         ax=axd["ce"],
         legend=False,
@@ -192,7 +192,7 @@ if __name__ == "__main__":
         secax.set_xticks(gpus_ticks_in_view)
         secax.tick_params(labelsize=13 * FONT_SCALE)
         secax.set_xticklabels(nodes_labels_in_view, fontsize=13 * FONT_SCALE)
-        secax.set_xlabel("Number of Nodes", fontsize=15 * FONT_SCALE)
+        secax.set_xlabel("Number of nodes", fontsize=15 * FONT_SCALE)
 
         secax.spines["bottom"].set_position(("outward", 55))
         secax.spines["top"].set_visible(False)
